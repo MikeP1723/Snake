@@ -17,13 +17,14 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class SnakeBoard extends JPanel implements ActionListener {
 	
-	private final int GAME_WIDTH = 300;
-	private final int GAME_HEIGHT = 300;
+	private final int GAME_WIDTH = 600;
+	private final int GAME_HEIGHT = 600;
 	private final int DOT_SIZE = 10;
 	private final int ALL_DOTS = (GAME_WIDTH * GAME_HEIGHT) / (DOT_SIZE * DOT_SIZE);
 	private final int RAND_POS = 29;
@@ -115,14 +116,15 @@ public class SnakeBoard extends JPanel implements ActionListener {
 		FontMetrics metr = getFontMetrics(small);
 		
 		JButton newGame = new JButton("New Game");
-		newGame.setBounds(60, 400, 220, 30);
+		newGame.setBounds(250, 150, 100, 30);
 		newGame.setVisible(true);
+		newGame.addActionListener(this);
 		add(newGame);
 		
 		g.setColor(Color.WHITE);
 		g.setFont(small);
 		g.drawString(GAME_OVER + ". Score = " + score, (GAME_WIDTH - metr.stringWidth(GAME_OVER + ". Score = " + score)) / 2, GAME_HEIGHT / 2);
-		
+	
 	}
 
 	@Override
@@ -133,6 +135,10 @@ public class SnakeBoard extends JPanel implements ActionListener {
 			checkApple();
 			checkCollision();
 			move();
+		}
+		
+		if (null != e && null != e.getActionCommand() && e.getActionCommand().equals("New Game")) {
+			Snake.main(null);
 		}
 		
 		repaint();
