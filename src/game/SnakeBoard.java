@@ -28,7 +28,6 @@ public class SnakeBoard extends JPanel implements ActionListener {
 	private final int DOT_SIZE = 10;
 	private final int ALL_DOTS = (GAME_WIDTH * GAME_HEIGHT) / (DOT_SIZE * DOT_SIZE);
 	private final int RAND_POS = 29;
-	private final int DELAY = 140;
 	
 	private final int x[] = new int[ALL_DOTS];
 	private final int y[] = new int[ALL_DOTS];
@@ -51,6 +50,8 @@ public class SnakeBoard extends JPanel implements ActionListener {
 	private Image head;
 	
 	private int score = 0;
+
+	private int delay = 140;
 	
 	public SnakeBoard() throws Exception {
 		
@@ -154,8 +155,8 @@ public class SnakeBoard extends JPanel implements ActionListener {
 		}
 		
 		locateApple();
-		
-		timer = new Timer(DELAY, this);
+
+		timer = new Timer(delay, this);
 		timer.start();
 	}
 	
@@ -174,6 +175,7 @@ public class SnakeBoard extends JPanel implements ActionListener {
 		if ((x[0] == cherry_x) && (y[0] == cherry_y)) {
 			dots++;
 			score++;
+			delay++;
 			locateApple();
 		}
 		
