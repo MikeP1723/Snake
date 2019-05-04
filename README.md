@@ -1,1 +1,1 @@
-"# Snake" 
+A simple snake game in Java.
